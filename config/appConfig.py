@@ -6,7 +6,6 @@ commitUrl= 'https://fangkong.hnu.edu.cn/api/v1/clockinlog/add'
 
 # path
 dirPath  = './data/.img/'
-# dataPath = './data/user.csv'
 dataPath = './data/user_campus.csv'
 
 # 邮箱配置
