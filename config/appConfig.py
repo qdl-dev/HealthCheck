@@ -5,7 +5,8 @@ loginUrl = 'https://fangkong.hnu.edu.cn/api/v1/account/login'
 commitUrl= 'https://fangkong.hnu.edu.cn/api/v1/clockinlog/add' 
 
 # path
-dirPath  = './data/user.csv'
+dirPath  = './data/.img/'
+dataPath = './data/user.csv'
 
 # 邮箱配置
 senderEmail = '×××'

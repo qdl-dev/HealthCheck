@@ -1,3 +1,4 @@
+from Crypto.Cipher import AES
 import numpy as np
 from mapper.getImage import getToken,getPic
 from mapper.ksdemo import KSClient
@@ -6,8 +7,11 @@ from mapper.sendEmail import sendEmail
 from mapper.readData import readData
 from mapper.commit import commit
 import time
+from mapper._AES import prpcrypt
 from apscheduler.schedulers.blocking import BlockingScheduler
 from config.appConfig import *
+
+pc = prpcrypt('abcdef') 
 
 # 打卡
 def check(username,passwd,RealAddress,RealCity,RealCounty,RealProvince,BackState,MorningTemp,NightTemp):
@@ -48,6 +52,7 @@ def check_Job():
         # 遍历用户列表
         for i in range(1,len(users)):
             username,passwd,email,RealAddress,RealCity,RealCounty,RealProvince,BackState,MorningTemp,NightTemp = users[i]
+            username,passwd,email = pc.decrypt(username),pc.decrypt(passwd),pc.decrypt(email)
             try:
                 res = check(username,passwd,RealAddress,RealCity,RealCounty,RealProvince,BackState,MorningTemp,NightTemp)
             except:

@@ -1,0 +1,5 @@
+username,passwd,email,RealAddress,RealCity,RealCounty,RealProvince,BackState,MorningTemp,NightTemp
+201808010501,Aaa,Aaa@qq.com,湖南大学天马学生公寓3区11栋203,长沙市,岳麓区,湖南省,1,36.3,36.3
+201808010502,Baa,Bbb@qq.com,湖南大学天马学生公寓3区11栋203,长沙市,岳麓区,湖南省,1,36.3,36.3
+201808010503,Ccc,Ccc@qq.com,湖南大学天马学生公寓3区11栋203,长沙市,岳麓区,湖南省,1,36.3,36.3
+以上为填写实例，请按自己的要求更改，添加多个帐号请直接追加，运行请删除本提示.

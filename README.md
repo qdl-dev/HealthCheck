@@ -1,8 +1,12 @@
 # <img src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=69948112,3892466283&fm=26&gp=0.jpg" alt="hnu" width = "80" height = "77" /> HNU 自动打卡 HealthCheck
 
-- 2021/10/29/ 更新 :bulb:
+#### 更新日志 Log :bulb:
 
-完善了分支管理，优化了程序环境部署，增加了ascii艺术字。
+:1st_place_medal:增加了用户信息加密功能，新建dev默认分支（该分支包含加密功能，如不在意用户信息，可用master分支部署）
+
+:2nd_place_medal: 完善了分支管理，优化了程序环境部署，增加了ascii艺术字。 ——`2021/3/3`
+
+:3rd_place_medal:
 
 - 简介 :bulb:
 
@@ -21,25 +25,28 @@
 ```zsh
 .
 ├── config						
-│   └── appConfig.py            # 配置文件
+│   └── appConfig.py            	# 配置文件
 ├── data
-│   ├── .img                    # 验证码图片缓存
-│   └── user.csv                # 打卡用户信息         
-├── main.py                      # 程序入口
-├── mapper                       # 方法接口
-│   ├── commit.py               # 提交打卡信息表单
-│   ├── getImage.py             # 下载保存验证码图片
-│   ├── ksdemo.py               # 验证码图像识别
-│   ├── login.py                # 登陆
-│   ├── readData.py             # 数据读取
-│   └── sendEmail.py            # 邮件发送
-├── README.md                    # README
-└── requirements.txt             # 安装依赖
+│   ├── .img                    	# 验证码图片缓存
+│   ├── user.csv					# 用户加密账户信息
+│   └── user-origin.csv				# 用户账户源信息
+├── main.py                      	# 程序入口
+├── mapper                       	# 方法接口
+│   ├── commit.py               	# 提交打卡信息表单
+│   ├── getImage.py             	# 下载保存验证码图片
+│   ├── ksdemo.py               	# 验证码图像识别
+│   ├── login.py                	# 登陆
+│   ├── readData.py             	# 数据读取
+│   └── sendEmail.py            	# 邮件发送
+├── README.md                    	# README
+└── requirements.txt             	# 安装依赖
+└── tools
+    └── encrypt.py				
 ```
 
 ## Quick Start
 
->  使用此程序需要简单三步，在开始之前你应该使用**git clone** 或下载 **zip** 包以获取程序
+>  使用此程序需要简单若干步，在开始之前你应该使用**git clone** 或下载 **zip** 包以获取程序
 
 ### （1）环境搭建
 
@@ -61,7 +68,7 @@ pip install -r requirements.txt
 
 - 注册**快识别**帐号：
 
-由于采用了验证码的验证方式，所以我们要识别验证码图片，最简单的方法是用第三方API。**快识别** 免费提供了这样的服务。我们需要注册快识别的帐号来支持验证码图片识别功能，快识别官网：http://fast.95man.com/ （建议不要滥用）
+由于采用了验证码的验证方式，所以我们要识别验证码图片，最简单的方法是用第三方API。**快识别** 免费提供了这样的服务。我们需要注册快识别的帐号来支持验证码图片识别功能，快识别官网：http://fast.95man.com/ （官方建议不要滥用）
 
 ### （2）填写配置文件
 
@@ -76,32 +83,33 @@ commitUrl= 'https://fangkong.hnu.edu.cn/api/v1/clockinlog/add'
 
 # path
 dirPath  = './data/.img/'
-dataPath = './data/user.csv'	# 用户帐号信息读取路径 
+dataPath = './data/user.csv'# 用户帐号信息读取路径 
 
 # 邮箱配置
-senderEmail = '×××'		# 代发邮箱（使用此邮箱给打卡用户发送邮件）
-sender = "×××"			# 代发邮箱昵称，任意
-devEmail = '×××'		# 开发者邮箱（如出现打卡失败的情况，代发邮箱给此邮箱发送打卡失败用户列表）
-AuthCode = '×××'		# 开启`POP3/SMTP`服务时的授权码
-port = 587                 # stmp使用端口
+senderEmail = '×××'			# 代发邮箱（使用此邮箱给打卡用户发送邮件）
+sender = "×××"				# 代发邮箱昵称，任意
+devEmail = '×××'			# 开发者邮箱（如出现打卡失败的情况，代发邮箱给此邮箱发送打卡失败用户列表）
+AuthCode = '×××'			# 开启`POP3/SMTP`服务时的授权码
+port = 587                 	# stmp使用端口
 
 sucessMsg = '   今日打卡成功，打卡时间：'
 failMsg = '     我们对您的账户进行了3次打卡尝试，由于某些原因导致打卡失败，请于今日手动完成打卡。\
 您可以尝试联系此邮箱以解决打卡失败的问题。祝您生活愉快！\n发件人： '+senderEmail	# 请不要调整Msg之间的换行和空格
 
 # http://fast.95man.com/注册使用
-k95Username = '×××'		# 快识别帐号
-k95Passwd = "×××"		# 快识别密码
+k95Username = '×××'			# 快识别帐号
+k95Passwd = "×××"			# 快识别密码
 
 # 打卡时间设置 0:20
-checkHour = '0'			   # 时间设置 任意
+checkHour = '0'				# 时间设置 任意
 checkMin  = '20'
 ```
 
-### （3）填写打卡用户信息
+### （3）填写打卡用户信息，加密账户3 :warning:
 
-程序已配置完毕，接下来填写打卡用户信息。你需要修改路径`HealthCheck/data/user.csv` 文件，参考以下实例：
-- 2021/3/3更新
+程序已配置完毕，接下来填写打卡用户信息，共三步：
+
+- 添加源用户信息，你需要修改路径`HealthCheck/data/user-origin.csv` 源用户信息文件，参考以下实例
 
 ```python
 username,passwd,email,RealAddress,RealCity,RealCounty,RealProvince,BackState,MorningTemp,NightTemp
@@ -111,9 +119,24 @@ username,passwd,email,RealAddress,RealCity,RealCounty,RealProvince,BackState,Mor
 
 > 注意：username,passwd分别代表`Ge ren men hu`帐号和密码。
 
+- 将源用户信息`user-origin` 转换为=> 加密用户信息`user`，使用`./tools/encrypt.py` 进行加密：
+
+```zsh
+cd tools
+python encrypt.py
+```
+
+![image-20211029200929974](https://img10.360buyimg.com/ddimg/jfs/t1/170211/7/22166/196020/617beb4fEaaefcc42/ffde1fe92ea73f17.png)
+
+- 清除源用户信息文件`user-origin`中的内容
+
+```zsh
+手动清除 user-origin.csv 中的内容防止密码信息泄露 或者在根目录下运行 echo "" > data/user-origin.csv 
+```
+
 ## 运行实例
 
-- 最后，你可以简单的使用命令执行`main.py`来运行程序
+- 最后，你可以在`根目录`简单使用命令执行`main.py`来运行程序
 
 ```zsh
 $ python main.py
@@ -151,6 +174,9 @@ Download image 2018080105222.jpeg sucessfully
 git clone git@github.com:LinXiaoDe/HealthCheck.git
 
 # 修改配置文件和用户列表
+参考 $quickSatart
+
+# 加密账户
 参考 $quickSatart
 
 # 开启一个screen会话
