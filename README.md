@@ -18,24 +18,23 @@
 - **目录结构 :trident:**
 
 >  目录结构
-
 ```zsh
 .
 ├── config						
 │   └── appConfig.py            # 配置文件
 ├── data
-│   ├── .img      				# 验证码图片缓存
-│   └── user.csv				# 打卡用户信息         
-├── main.py                     # 程序入口
-├── mapper                      # 方法接口
+│   ├── .img                    # 验证码图片缓存
+│   └── user.csv                # 打卡用户信息         
+├── main.py                      # 程序入口
+├── mapper                       # 方法接口
 │   ├── commit.py               # 提交打卡信息表单
 │   ├── getImage.py             # 下载保存验证码图片
 │   ├── ksdemo.py               # 验证码图像识别
 │   ├── login.py                # 登陆
 │   ├── readData.py             # 数据读取
 │   └── sendEmail.py            # 邮件发送
-├── README.md					# README
-└── requirements.txt			# 安装依赖
+├── README.md                    # README
+└── requirements.txt		     # 安装依赖
 ```
 
 ## Quick Start
