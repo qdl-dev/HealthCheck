@@ -1,9 +1,5 @@
 import pandas as pd
 
-# def readData(dataPath):
-#     data=pd.read_csv(dataPath,header=None,names=["username","passwd","email","RealAddress","RealCity","RealCounty","RealProvince","IsInCampus"])
-#     return data.values
-
 def readData(dataPath):
     data=pd.read_csv(dataPath,header=None,names=["username","passwd","email","RealAddress","RealCity","RealCounty","RealProvince","BackState","MorningTemp","NightTemp"])
     return data.values
