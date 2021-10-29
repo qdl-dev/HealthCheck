@@ -102,16 +102,6 @@ checkMin  = '20'
 ### （3）填写打卡用户信息
 
 程序已配置完毕，接下来填写打卡用户信息。你需要修改路径`HealthCheck/data/user.csv` 文件，参考以下实例：
-
-- 原版本：
-
-```python
-username,passwd,email,RealAddress,RealCity,RealCounty,RealProvince,IsInCampus
-802180010599,mima123456,3214566@qq.com,岳麓区,岳阳市,岳阳县,湖南省,0
-802180010598,mima654321,1245678@qq.com,八里屯小区,武威市,凉州区,甘肃省,0
-.....继续添加新用户
-```
-
 - 2021/3/3更新
 
 ```python
@@ -127,7 +117,7 @@ username,passwd,email,RealAddress,RealCity,RealCounty,RealProvince,BackState,Mor
 - 最后，你可以简单的使用命令执行`main.py`来运行程序
 
 ```zsh
-$ python main_campus.py
+$ python main.py
 ##   ##  #######    ###    ##     ######  ##   ##            #####   ##   ##  #######   #####   ##   ##  
 ##   ##  ##        ## ##   ##       ##    ##   ##           ##   ##  ##   ##  ##       ##   ##  ##  ##   
 ##   ##  ##       ##   ##  ##       ##    ##   ##           ##       ##   ##  ##       ##       ## ##    
