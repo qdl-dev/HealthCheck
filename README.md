@@ -34,7 +34,7 @@
 │   ├── readData.py             # 数据读取
 │   └── sendEmail.py            # 邮件发送
 ├── README.md                    # README
-└── requirements.txt		     # 安装依赖
+└── requirements.txt             # 安装依赖
 ```
 
 ## Quick Start
@@ -83,7 +83,7 @@ senderEmail = '×××'		# 代发邮箱（使用此邮箱给打卡用户发送邮
 sender = "×××"			# 代发邮箱昵称，任意
 devEmail = '×××'		# 开发者邮箱（如出现打卡失败的情况，代发邮箱给此邮箱发送打卡失败用户列表）
 AuthCode = '×××'		# 开启`POP3/SMTP`服务时的授权码
-port = 587              # stmp使用端口
+port = 587                 # stmp使用端口
 
 sucessMsg = '   今日打卡成功，打卡时间：'
 failMsg = '     我们对您的账户进行了3次打卡尝试，由于某些原因导致打卡失败，请于今日手动完成打卡。\
@@ -94,7 +94,7 @@ k95Username = '×××'		# 快识别帐号
 k95Passwd = "×××"		# 快识别密码
 
 # 打卡时间设置 0:20
-checkHour = '0'			# 时间设置 任意
+checkHour = '0'			   # 时间设置 任意
 checkMin  = '20'
 ```
 
