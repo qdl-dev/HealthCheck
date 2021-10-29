@@ -2,11 +2,11 @@
 
 #### 更新日志 Log :bulb:
 
-:1st_place_medal:增加了用户信息加密功能，新建dev默认分支（该分支包含加密功能，如不在意用户信息，可用master分支部署）
+:1st_place_medal:增加了用户信息加密功能，新建dev默认分支（该分支包含加密功能，如不在意用户信息，请用master分支部署） ——`2021/10/29`
 
-:2nd_place_medal: 完善了分支管理，优化了程序环境部署，增加了ascii艺术字。 ——`2021/3/3`
+:2nd_place_medal: 完善了分支管理，优化了程序环境部署，增加了ascii艺术字。 		——`2021/3/3`
 
-:3rd_place_medal:
+:3rd_place_medal:新建项目，完成核心功能，version1-outdate分支已过时				  ——`2021/3/3`
 
 - 简介 :bulb:
 
