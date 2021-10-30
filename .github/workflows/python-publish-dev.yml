@@ -2,9 +2,9 @@ name: Health Check Action
 
 on:
   push:
-    branches: [dev]
+    branches: [auto]
   pull_request:
-    branches: [dev]
+    branches: [auto]
   schedule:
     - cron:  '5 16 * * *'
 
