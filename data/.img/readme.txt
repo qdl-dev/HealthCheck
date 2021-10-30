@@ -1,1 +1,1 @@
-This is a directory of downloading images.
+This is a cache directory for downloading images.

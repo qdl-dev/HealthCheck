@@ -56,7 +56,6 @@ def check_Job():
             isCheck = 1
             break
 
-
     # 未成功打卡的用户发送邮箱提醒手动打卡
     if(isCheck==0):
             print("打卡失败，请手动打卡或重试！")
