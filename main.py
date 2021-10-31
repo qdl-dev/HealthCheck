@@ -4,7 +4,8 @@ from mapper.ksdemo import KSClient
 from mapper.login import login
 from mapper.sendEmail import sendEmail
 from mapper.commit import commit
-import time
+import pytz
+import datetime
 from config.appConfig import *
 
 # 打卡
@@ -34,7 +35,8 @@ def check(username,passwd,RealAddress,RealCity,RealCounty,RealProvince,BackState
 
 # 打卡作业
 def check_Job():
-    cur = time.strftime("%Y-%m-%d %H:%M:%S",time.localtime(time.time()))
+    tz = pytz.timezone('Asia/Shanghai')
+    cur = datetime.datetime.now(tz).strftime("%Y-%m-%d %H:%M:%S")
     print("----------[log] : "+cur)
     username,passwd,email = os.environ["USERNAME"],os.environ["PASSWD"],os.environ["EMAIL"]
     # 最多进行3次打卡尝试 per day
@@ -44,7 +46,8 @@ def check_Job():
             res = check(username,passwd,RealAddress,RealCity,RealCounty,RealProvince,BackState,MorningTemp,NightTemp)
         except:
             res = -1
-        cur = time.strftime("%Y-%m-%d %H:%M:%S",time.localtime(time.time()))
+            tz = pytz.timezone('Asia/Shanghai')
+            cur = datetime.datetime.now(tz).strftime("%Y-%m-%d %H:%M:%S")
         # 打卡成功
         if(res == 0):
             sendEmail(senderEmail,email,AuthCode,sender,username,
@@ -59,7 +62,8 @@ def check_Job():
     # 未成功打卡的用户发送邮箱提醒手动打卡
     if(isCheck==0):
             print("打卡失败，请手动打卡或重试！")
-            cur = time.strftime("%Y-%m-%d %H:%M:%S",time.localtime(time.time()))
+            tz = pytz.timezone('Asia/Shanghai')
+            cur = datetime.datetime.now(tz).strftime("%Y-%m-%d %H:%M:%S")
             sendEmail(senderEmail,email,AuthCode,
                       sender,username,"打卡失败提醒","Hi "+username+" ：\n"+failMsg)
             # 开发者邮件
