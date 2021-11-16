@@ -66,11 +66,86 @@
 
 ![image-20211030224537969](https://i.loli.net/2021/10/30/BaYtk3RJwVP2DGT.png)
 
-### 2. pull 到自己的仓库
+### 2. Fork 到自己的仓库
+
+![image-20211031084432461](https://i.loli.net/2021/10/31/li5nkzh2xY89X7b.png)
+
+### 3. 填写Secrets信息并开放Github Action
+
+创建Secrets字段信息，包括`Ge ren men hu`帐号：`YOUR_USERNAME`，密码`YOUR_PASSWD` 以及接收打卡日志的邮件`YOUR_EMAIL`，依次点击 Settings >  Secrets > New repository secret > `填写Secrets` > `创键完成` .
+
+- 创建Secrets
+
+![image-20211031085356309](https://i.loli.net/2021/10/31/kWAUnS6fYwEc5qJ.png)
+
+- 填写Secrets（三个）
+
+![image-20211031084925621](https://i.loli.net/2021/10/31/Ic8i9we4ubEsOrv.png)
+
+- 创建完成
+
+![image-20211031085436836](https://i.loli.net/2021/10/31/Qh3fnYzRkSi4aqw.png)
+
+创建完成后，依次点击 `Actions` > `Workflows` > `Enable workflow` 即可开始定时打卡。
+
+![image-20211031085916426](https://i.loli.net/2021/10/31/QgDtFwcypI6oHBl.png)
+
+
+## 运行`HealthCheck`
+
+通过`Quick Start`后您已经完成了所有部署，静候每天凌晨`00:30`自动打卡邮件即可。如果您想要手动运行workflow，可以点击 Health Check Action > Run workflow > `Run workflow` 手动测试一次。
+
+![image-20211031090153765](https://i.loli.net/2021/10/31/aDAgJOkIUWpMGeX.png)
+
+进入 Health Check Action > Deploy > Check  查看打卡日志。
+
+![image-20211031090510314](https://i.loli.net/2021/10/31/HGSTnQ1384iwdWK.png)
+
+今日已提交过打卡信息，否则将会在打卡成功后发送邮件提醒。
+
+![image-20211031090633598](https://i.loli.net/2021/10/31/hcqb469tTynVSOD.png)
 
 
 
-### 3. 开放Github Action权限并填写账户信息
+## :ice_cream:More info [非必须]
 
+`config/appConfig`配置文件信息也是可以按照个人需要修改的。在该文件中您可以重新配置发件人信息，开发者邮件信息，fast图片识别账户密码，打卡地点等信息。
 
+```python
+# 邮箱配置
+senderEmail = 'qdl.no-reply@foxmail.com'
+sender = "qdl-dev"
+devEmail = 'qdl.no-reply@foxmail.com'
+AuthCode = 'nprgjutnqcdedhdc'
+sucessMsg = '   今日打卡成功，打卡时间：'
+failMsg = '     我们对您的账户进行了3次打卡尝试，由于某些原因导致打卡失败，请于今日手动完成打卡。\
+您可以尝试联系此邮箱以解决打卡失败的问题。祝您生活愉快！\n发件人： '+senderEmail                    # 格式无需调整
+
+# http://fast.95man.com/注册使用
+k95Username = 'qdl-dev'
+k95Passwd = 'qdl-dev'
+
+# 用户信息
+RealAddress,RealCity,RealCounty,RealProvince,BackState,MorningTemp,NightTemp = \
+	"湖南大学","长沙市","岳麓区","湖南省",1,36.3,36.3
+```
+
+`.github/workflows/python-publish-auto.yml`工作流配置文件中您可以根据需要修改自动打卡时间：
+
+```yaml
+on:
+  push:
+    branches: [auto]
+  pull_request:
+    branches: [auto]
+  schedule:
+    - cron:  '30 16 * * *'	# UTC世界时，修改请参考Github Action Doc
+  workflow_dispatch:
+```
+
+> :warning: 注意
+>
+> fast图片识别默认使用的是我注册的一个私人帐户qdl-dev，而fast图片识别只能提供单日100次识别接口，如果使用该仓库的人数达到上限可能打卡失败。
+>
+> 更详细的:ice_cream:More info 信息请参考 [Master分支](https://github.com/qdl-dev/HealthCheck/tree/master)
 
